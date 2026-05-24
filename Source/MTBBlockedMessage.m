@@ -392,7 +392,7 @@ NSString * const kCSSTemplateRegex = @"(background-image|content):\\s?url\\([\'\
             @"/mo/.+.gif",
             @"emarsys.com/e2t/o/"
         ],
-        @"EmberPoint": @[@"mpse.jp"],
+        @"EmberPoint": @[@"rec.mpse.jp", @"/open.html\\?cnid="],
         @"Envoke": @[@"envoke.com/o/"],
         @"Epic Games": @[@"accts.epicgames.com/O/"],
         @"Epsilon": @[
