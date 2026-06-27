@@ -310,7 +310,7 @@ NSString * const kCSSTemplateRegex = @"(background-image|content):\\s?url\\([\'\
             @"support.planetary.org/site/PixelServer",
             @"/smtp.mailopen\\?id=" // not 100% sure
         ],
-        @"Bloomreach": @[@"cdn.us1.exponea.com/.+/open"],
+        @"Bloomreach": @[@"/e/[A-Za-z0-9_.-]+/open"],
         @"Blueshift.com": @[
             @"getblueshift.com/track"
         ],
@@ -363,6 +363,7 @@ NSString * const kCSSTemplateRegex = @"(background-image|content):\\s?url\\([\'\
             @"track.customer.io/e/o",
             @"/e/o/.+",
         ],
+        @"CustomerRings": @[@"c-rings.net/Mail/Gif/"],
         @"Cyberimpact": @[@"app.cyberimpact.com/footer-image"],
         @"Data Axle": @[@"ympxl.com/log.gif"],
         @"dataX": @[@"openedlog.bdash-cloud.com/opened", @"openedlog.smart-bdash.com/opened"],
@@ -599,6 +600,7 @@ NSString * const kCSSTemplateRegex = @"(background-image|content):\\s?url\\([\'\
             @"getoutreach.com/api/mailings/opened",
             @"a.science-recruiting.com/api/mailings/opened"
         ],
+        @"pafin": @[@"mail.cryptact.com/ty/v/"],
         @"Paved": @[@"vpdae.com/open/[0-9][0-9][0-9][0-9].gif"],
         @"PayBack": @[@"email.payback.in/a/", @"mail.payback.in/tr/"],
         @"PayPal": @[@"paypal-communication.com/O/", @"t.paypal.com/ts\\?"],
@@ -760,6 +762,7 @@ NSString * const kCSSTemplateRegex = @"(background-image|content):\\s?url\\([\'\
         @"Verizon": @[@"verizon.com/econtact/ecrm/EmailTracking.serv"],
         @"VinSolutions": @[@"vinlens.com/email.ashx\\?c="],
         @"Vinted": @[@"vinted.[a-z][a-z]/crm/email_track\\?crm_email_id="],
+        @"VoIP.ms": @[@"voip.ms/email.php\\?id="],
         @"Vtiger": @[@"od2.vtiger.com/shorturl.php"],
         @"Walmart": @[@"w-mt.co/g/rptrcks/comm-smart-app/services/tracking/openTracker"],
         @"WhatCounts": @[@"/t\\?c=[0-9][0-9][0-9][0-9]&r=[0-9][0-9][0-9][0-9]&l=[0-9][0-9][0-9]?&t=[0-9][0-9]&e="],

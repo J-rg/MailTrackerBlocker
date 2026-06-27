@@ -327,6 +327,41 @@
     XCTAssertEqualObjects(msg3.detectedTracker, @"Optimove");
 }
 
+- (void)testVoIPms {
+    MTBBlockedMessage *msg = [[MTBBlockedMessage alloc] initWithHtml:@"<img src='https://www.voip.ms/email.php?id=405708&email=453' style='display:none;width:0px;overflow:hidden;mso-hide:all;height:0;font-size:0;max-height:0;line-height:0;margin:0 auto;position:absolute;top: 0px;right: 0px;'/>"];
+    XCTAssertEqualObjects(msg.detectedTracker, @"VoIP.ms");
+    XCTAssertEqual(msg.certainty, BLOCKING_RESULT_CERTAINTY_CONFIDENT_HARD_MATCH);
+    XCTAssertEqualObjects(msg.sanitizedHtml, @"");
+}
+
+- (void)testCustomerRings {
+    MTBBlockedMessage *msg = [[MTBBlockedMessage alloc] initWithHtml:@"<img src=\"https://j.c-rings.net/Mail/Gif/9v96vM1dgN1UEWub2mRhNBg_.gif\" width=\"0px\" height=\"0px\">"];
+    XCTAssertEqualObjects(msg.detectedTracker, @"CustomerRings");
+    XCTAssertEqual(msg.certainty, BLOCKING_RESULT_CERTAINTY_CONFIDENT_HARD_MATCH);
+    XCTAssertEqualObjects(msg.sanitizedHtml, @"");
+}
+
+- (void)testBloomreach {
+    NSString *customDomain = @"<img width=\"1\" height=\"1\" alt=\"\" src=\"https://link.kiwi.com/kiwi-dev-2-skypicker/e/CgxqKmowe1ZVYx97sv0SIJ8QIoB5y4JnRpTKSFwa_rBo11YPWyiZOM7eoINZD-tAMYZZ9eTrjdpBagxilhRpaVg76IC_Fc7SATcKDWNfdXRtX2NvbnRlbnQSJnNhbGVzLXByaWNlLWxldmVscy1yYW5kb20tcmVndWxhcl80XzI0gAIC.8PpBNZTVMuxp_g/open\" style=\"display: none;\">";
+    MTBBlockedMessage *msg = [[MTBBlockedMessage alloc] initWithHtml:customDomain];
+    XCTAssertEqualObjects(msg.detectedTracker, @"Bloomreach");
+    XCTAssertEqual(msg.certainty, BLOCKING_RESULT_CERTAINTY_CONFIDENT_HARD_MATCH);
+    XCTAssertEqualObjects(msg.sanitizedHtml, @"");
+
+    NSString *cdnDomain = @"<img width=\"1\" height=\"1\" alt=\"\" src=\"https://cdn.us1.exponea.com/altitude-sports-prod/e/CgxiH6BSi9nDwGG4xtISIFC0I64O-maTSuP3cq_34Wx8glyCcfYOBck_4Ck3gCALMcpqGKPy99hBagxiHOOCUS_3HUqKbvE.P1sWqugsyGCJJg/open\">";
+    MTBBlockedMessage *msg2 = [[MTBBlockedMessage alloc] initWithHtml:cdnDomain];
+    XCTAssertEqualObjects(msg2.detectedTracker, @"Bloomreach");
+    XCTAssertEqual(msg2.certainty, BLOCKING_RESULT_CERTAINTY_CONFIDENT_HARD_MATCH);
+    XCTAssertEqualObjects(msg2.sanitizedHtml, @"");
+}
+
+- (void)testPafin {
+    MTBBlockedMessage *msg = [[MTBBlockedMessage alloc] initWithHtml:@"<img src=\"https://mail.cryptact.com/ty/v/eyJpdiI6IjVzMWhjRllFWUtiTVVMc21pSVB0VVE9PSIsInZhbHVlIjoiTVZ3R2wwR1NwTnpKVHhyS01BSzFVK0ZHMWtZc0Q2UCt6Tk5FRENEdzN5dXc4ekMrc1hvdGppZzZoeUtDeitzOTFQYTY4SDNtQUJkRS9LeFhnYWxkTVh1SWN2aTdORTZTWkVSd1VKYnJqQVk9IiwibWFjIjoiNDFmOGVhMDRmNjk2YzFmYzFlMDVjNzc1ZTc1OTMyYTIzMzg1OWJhNzNjM2I2NTBkM2UyZDYzM2Q2MzBmNmY0ZSIsInRhZyI6IiJ9?signature=f2f9e98006e2c334a2c2878ed3a6325ef5537d1e0657aec1f2f3a2b2cd4aabf1\" width=\"1\" height=\"1\" alt=\"\" style=\"display:block;height:0px;width:0px;max-width:0px;max-height:0px;overflow:hidden;\" border=\"0\">"];
+    XCTAssertEqualObjects(msg.detectedTracker, @"pafin");
+    XCTAssertEqual(msg.certainty, BLOCKING_RESULT_CERTAINTY_CONFIDENT_HARD_MATCH);
+    XCTAssertEqualObjects(msg.sanitizedHtml, @"");
+}
+
 #pragma mark - Helpers
 
 - (NSString*)getHTMLResourceWithFileName:(NSString*)fileName {
